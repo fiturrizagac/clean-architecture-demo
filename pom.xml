@@ -47,10 +47,9 @@
                 <version>${projectlombok.version}</version>
                 <scope>provided</scope>
             </dependency>
-
             <dependency>
                 <groupId>com.amazonaws</groupId>
-                <artifactId>aws-java-sdk-cognitoidentity</artifactId>
+                <artifactId>aws-java-sdk-cognitoidp</artifactId>
                 <version>${aws-java-sdk-cognito.version}</version>
             </dependency>
 
