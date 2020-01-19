@@ -4,6 +4,7 @@ package com.befitca.cleanarch.adapter.cognito;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.BasicAWSCredentials;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class UserAuthenticatorCognitoImplTest {
@@ -26,6 +27,7 @@ public class UserAuthenticatorCognitoImplTest {
         //target.setClientSecret(CLIENT_SECRET);
     }
 
+    @Ignore
     @Test
     public void name() {
         target.authenticate(USERNAME,PASSWORD);

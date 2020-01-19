@@ -45,7 +45,7 @@ public class UserAuthenticatorCognitoImpl implements UserAuthenticator {
     public boolean authenticate(final String username, final String password) {
 
         AuthenticationResultType authentication = null;
-
+        // TODO:Remove new password challenge
         try {
             AdminInitiateAuthResult adminInitiateAuthResult = authenticateWithCognito(username, password);
             if (ChallengeNameType.NEW_PASSWORD_REQUIRED.toString().equals(adminInitiateAuthResult.getChallengeName())) {
