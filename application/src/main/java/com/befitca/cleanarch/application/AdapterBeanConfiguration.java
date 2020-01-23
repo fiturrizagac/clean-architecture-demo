@@ -1,0 +1,18 @@
+package com.befitca.cleanarch.application;
+
+import com.befitca.cleanarch.adapter.cognito.UserAuthenticatorCognitoImpl;
+import com.befitca.cleanarch.usecase.port.out.UserAuthenticator;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+@ComponentScan({"com.befitca.cleanarch.adapter.web"})
+public class AdapterBeanConfiguration {
+
+    @Bean
+    public UserAuthenticator userAuthenticator() {
+        return new UserAuthenticatorCognitoImpl("","","",null);
+    }
+
+}

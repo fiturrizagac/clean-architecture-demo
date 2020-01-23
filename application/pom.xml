@@ -13,7 +13,6 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <start-class>com.befitca.cleanarch.application.DemoApp</start-class>
     </properties>
 
     <dependencies>
