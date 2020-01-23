@@ -1,9 +1,9 @@
 package com.befitca.cleanarch.application;
 
-import com.amazonaws.auth.AWSCredentials;
-import com.amazonaws.auth.BasicAWSCredentials;
+import com.befitca.cleanarch.adapter.cognito.CognitoParams;
 import com.befitca.cleanarch.adapter.cognito.UserAuthenticatorCognitoImpl;
 import com.befitca.cleanarch.usecase.port.out.UserAuthenticator;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -12,9 +12,14 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan({"com.befitca.cleanarch.adapter.web"})
 public class AdapterBeanConfiguration {
 
+    @ConfigurationProperties(prefix="demo-app.adapter.cognito")
     @Bean
-    public UserAuthenticator userAuthenticator(CognitoProperties properties) {
-        AWSCredentials credentials = new BasicAWSCredentials(properties.getAwsAccessKey(),properties.getAwsSecretKey());
-        return new UserAuthenticatorCognitoImpl(properties.getClientId(),properties.getPoolId(),properties.getRegion(),credentials);
+    public CognitoParams cognitoParams() {
+        return new CognitoParams();
+    }
+
+    @Bean
+    public UserAuthenticator userAuthenticator(CognitoParams params) {
+        return new UserAuthenticatorCognitoImpl(params);
     }
 }

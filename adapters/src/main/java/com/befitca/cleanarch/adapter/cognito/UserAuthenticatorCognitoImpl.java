@@ -2,6 +2,7 @@ package com.befitca.cleanarch.adapter.cognito;
 
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
+import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.cognitoidp.AWSCognitoIdentityProvider;
 import com.amazonaws.services.cognitoidp.AWSCognitoIdentityProviderClientBuilder;
@@ -16,27 +17,24 @@ import java.util.*;
 
 public class UserAuthenticatorCognitoImpl implements UserAuthenticator {
 
-    private String region;
     private String clientId;
     @Setter
     private String clientSecret;
     private String poolId;
-    private AWSCredentials credentials;
     private AWSCognitoIdentityProvider awsCognitoIdentityProvider;
 
-    public UserAuthenticatorCognitoImpl(String clientId, String poolId, String region, AWSCredentials credentials) {
-        this.region = region;
-        this.clientId = clientId;
-        this.credentials = credentials;
-        this.poolId = poolId;
-        this.awsCognitoIdentityProvider =  createCognitoClient();
+    public UserAuthenticatorCognitoImpl(final CognitoParams params) {
+        AWSCredentials credentials = new BasicAWSCredentials(params.getAwsAccessKey(), params.getAwsSecretKey());
+        this.clientId = params.getClientId();
+        this.poolId = params.getPoolId();
+        this.awsCognitoIdentityProvider = createCognitoClient(credentials,params.getRegion());
     }
 
-    protected AWSCognitoIdentityProvider createCognitoClient() {
+    protected AWSCognitoIdentityProvider createCognitoClient(final AWSCredentials credentials, final String region) {
         AWSCognitoIdentityProvider awsCognitoIdentityProvider = AWSCognitoIdentityProviderClientBuilder
                 .standard()
                 .withCredentials(new AWSStaticCredentialsProvider(credentials))
-                .withRegion(Regions.fromName(this.region))
+                .withRegion(Regions.fromName(region))
                 .build();
         return awsCognitoIdentityProvider;
     }

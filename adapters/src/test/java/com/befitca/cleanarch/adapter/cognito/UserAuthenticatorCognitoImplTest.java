@@ -20,10 +20,19 @@ public class UserAuthenticatorCognitoImplTest {
 
     private UserAuthenticatorCognitoImpl target;
 
+    private CognitoParams createCognitoParams() {
+        CognitoParams params = new CognitoParams();
+        params.setClientId(POOL_ID);
+        params.setClientId(CLIENT_ID);
+        params.setAwsAccessKey(AWS_ACCESSKEY);
+        params.setAwsSecretKey(AWS_SECRETKEY);
+        params.setRegion(REGION);
+        return params;
+    }
+
     @Before
     public void setUp() {
-        AWSCredentials credentials = new BasicAWSCredentials(AWS_ACCESSKEY,AWS_SECRETKEY);
-        target = new UserAuthenticatorCognitoImpl(CLIENT_ID,POOL_ID,REGION,credentials);
+        target = new UserAuthenticatorCognitoImpl(createCognitoParams());
         //target.setClientSecret(CLIENT_SECRET);
     }
 
