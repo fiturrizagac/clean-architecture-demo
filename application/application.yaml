@@ -1,0 +1,12 @@
+spring:
+  profiles:
+    active: demo
+
+demo:
+  adapter:
+    cognito:
+      region: us-west-2
+      client-id: xxxxxx
+      pool-id: xxxxxx
+      aws-accesskey: xxxxxx
+      aws-secretkey: xxxxxx
