@@ -18,7 +18,7 @@
     <properties>
         <projectlombok.version>1.18.10</projectlombok.version>
         <aws-java-sdk-cognito.version>1.11.708</aws-java-sdk-cognito.version>
-        <junit.version>4.13</junit.version>
+        <junit.version>4.13.1</junit.version>
         <springboot.version>2.2.3.RELEASE</springboot.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
